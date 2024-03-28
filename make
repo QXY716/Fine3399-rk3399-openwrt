@@ -74,7 +74,7 @@ op_release="etc/flippy-openwrt-release"
 # Dependency files download repository
 depends_repo="https://github.com/ophub/amlogic-s9xxx-armbian"
 # U-BOOT files download repository
-uboot_repo="https://github.com/ophub/u-boot"
+uboot_repo="https://github.com/QXY716/u-boot"
 # Firmware files download repository
 firmware_repo="https://github.com/ophub/firmware"
 # Install/Update script files download repository
@@ -94,7 +94,7 @@ specific_6xy=("6.6.y" "6.1.y")
 specific_5xy=("5.15.y" "5.10.y" "5.4.y")
 specific_kernel=()
 # Set the list of kernels used by default(Selectable version)
-stable_kernel=("6.1.y" "5.15.y")
+stable_kernel=("6.6.y" "6.1.y" "5.15.y")
 flippy_kernel=(${stable_kernel[@]})
 dev_kernel=(${stable_kernel[@]})
 beta_kernel=(${stable_kernel[@]})
@@ -723,6 +723,11 @@ make_image() {
         elif [[ -n "${BOOTLOADER_IMG}" && -f "${bootloader_path}/${BOOTLOADER_IMG}" ]]; then
             dd if="${bootloader_path}/${BOOTLOADER_IMG}" of="${loop_new}" conv=fsync,notrunc bs=512 skip=64 seek=64 2>/dev/null
             #echo -e "${INFO} 03. For [ ${board} ] write bootloader: ${BOOTLOADER_IMG}"
+        fi
+
+        if [[ "${board}" == "fine3399" ]]; then
+            dd if="${bootloader_path}/uboot-bozz-rk3399.bin" of="${loop_new}" bs=1k skip=32 seek=32 conv=notrunc 2>/dev/null
+            echo -e "Fine3399 U-boot替换成功"
         fi
     }
 
