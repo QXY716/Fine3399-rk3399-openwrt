@@ -51,6 +51,7 @@ on:
           - h69k
           - h88k
           - h88k-v3
+          - hs530r
           - hugsun-x99
           - ipc-r
           - king3399
@@ -160,7 +161,7 @@ on:
       openwrt_kernel:
         description: "Select kernel version"
         required: false
-        default: "6.1.y_5.15.y"
+        default: "6.1.y_6.6.y"
         type: choice
         options:
           - 5.4.y
