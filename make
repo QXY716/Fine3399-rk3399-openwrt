@@ -726,9 +726,14 @@ make_image() {
             #echo -e "${INFO} 03. For [ ${board} ] write bootloader: ${BOOTLOADER_IMG}"
         fi
 
-        if [[ "${board}" == "fine3399" ]]; then
+        if [[ "${board}" == "fine3399" ]] || [[ "${board}" == "fine3399-full" ]]; then
             dd if="${bootloader_path}/uboot-bozz-rk3399.bin" of="${loop_new}" bs=1k skip=32 seek=32 conv=notrunc 2>/dev/null
             echo -e "Fine3399 U-boot替换成功"
+        fi
+
+        if [[ "${board}" == "r08" ]]; then
+            dd if="${bootloader_path}/uboot-r08.bin" of="${loop_new}" bs=1k skip=32 seek=32 conv=notrunc 2>/dev/null
+            echo -e "R08 U-boot替换成功"
         fi
     }
 

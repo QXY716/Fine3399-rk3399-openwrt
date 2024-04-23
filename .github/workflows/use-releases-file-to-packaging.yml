@@ -58,6 +58,7 @@ on:
           - nanopi-r5c
           - nanopi-r5s
           - panther-x2
+          - r08
           - r66s
           - r68s
           - renegade-rk3328
@@ -177,15 +178,15 @@ on:
       kernel_repo:
         description: "Set the kernel repository"
         required: false
-        default: "ophub/kernel"
+        default: "QXY716/kernel"
         type: choice
         options:
-          - ophub/kernel
           - QXY716/kernel
+          - ophub/kernel
       kernel_usage:
         description: "Set the tags of the stable kernel."
         required: false
-        default: "flippy"
+        default: "stable"
         type: choice
         options:
           - stable
